@@ -1,0 +1,392 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Mosaics Workpad</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width = device-width,  initial-scale = 1.0">
+    <link rel="stylesheet" type="text/css" href="pdf_viewer.css" />
+    <link rel="stylesheet" type="text/css" href="cmsViewer.css?v2.7" />
+
+    <!--pdf.js-->
+    <script type="text/javascript" src="PdfJs/pdf.js"></script>
+    <script type="text/javascript" src="PdfJs/pdf.worker.js"></script>
+
+    <!--<script type="text/javascript" src="js/login.js"></script>-->
+</head>
+<!--<body onload="getScreen()" dir="rtl">-->
+<body dir="rtl">
+
+
+
+    <div id="leftPane" class="leftPaneNarrow" style="height: 100%;display:none">
+        <table>
+            <tr style="display: none">
+                <td id="logoPlaceholder" class="logo"></td>
+            </tr>
+            <tr style="display: none">
+                <td style="padding: 10px"><div id="systemDate" class="sysDate"></div></td>
+            </tr>
+            <tr style="display: none">
+                <td style="height: 30px"></td>
+            </tr>
+            <tr style="display: none">
+                <td id="bar0Header" class="barHeader" onclick="toggleBar(event)"></td>
+            </tr>
+            <tr style="display: none">
+                <td id="bar0Content" class="barContentCollapsed">
+                    <div id="taskPaneContent" class="barContentDivCollapsed"></div>
+                </td>
+            </tr>
+            <tr style="display: none">
+                <td id="bar1Header" class="barHeader" onclick="toggleBar(event)">
+                    Context
+                </td>
+            </tr>
+            <tr style="display: none">
+                <td id="bar1Content" class="barContentCollapsed">
+                    <div class="barContentDivCollapsed"><div class="soon"></div></div>
+                </td>
+            </tr>
+            <tr style="display: none">
+                <td id="bar2Header" class="barHeader" onclick="toggleBar(event)">
+                    Portfolio
+                </td>
+            </tr>
+            <tr style="display: none">
+                <td id="bar2Content" class="barContentCollapsed">
+                    <div class="barContentDivCollapsed"><div class="soon"></div></div>
+                </td>
+            </tr>
+            <tr style="display: none">
+                <td id="bar3Header" class="barHeader" onclick="toggleBar(event)">
+                    Collaboration
+                </td>
+            </tr>
+            <tr style="display: none">
+                <td id="bar3Content" class="barContentCollapsed">
+                    <div class="barContentDivCollapsed"><div class="soon"></div></div>
+                </td>
+            </tr>
+            <tr style="display: none"></tr>
+            <tr>
+                <td id="bottomPaneArea" class="bottomPaneAreaN" onclick="togglePane()"></td>
+            </tr>
+        </table>
+    </div>
+    <div id="mainPane" class="main-pane">
+        <!--<div id="header" class="header">
+            <div class="header-borders">
+                <div class="user-logo-borders">
+                    <div id="logoContainer" class="logo-container" onclick="homeClick(event);"></div>
+
+                    <div id="userContainer" class="user-container">
+                        <div id="userMenu" class="user-menu">
+                            <div id="accessibilityContainer" class="accessibility-container">
+                                <span class="accessibility-label">מצב נגישות</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="accessibility">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="menuContainer" class="menu-container">
+                    <div class="menu-sides"></div>
+                    <div class="menu-sides"></div>
+                </div>
+            </div>
+            <div class="header-borders-extra"></div>
+        </div>-->
+        <div id="mainArea" class="main-area" >
+            <!--<input id="screenSeparator" type="checkbox" />-->
+            <!--<label for="screenSeparator" class="screen-separator">
+                <span class="separator-arrow"></span>
+            </label>-->
+            <div id="cms-main-area">
+                <div id="cms-top-bar" class="cms-bar">
+                    <div id="cms-page-functions" class="cms-menu-container">
+                        <div id="cms-prev-page-container" class="cms-menu cms-btn-container">
+                            <div id="cms-prev-page" class="cms-btn">
+                                <img src="images/cms-icons/icn_prev_page.png" />
+                                <span>דף הקודם</span>
+                            </div>
+                        </div>
+                        <div id="cms-page-indicator" class="cms-menu">
+                            <span id="cms-page-index"></span>
+                            <span id="cms-out-of">/</span>
+                            <span id="cms-num-pages"></span>
+                        </div>
+                        <div id="cms-next-page-container" class="cms-menu cms-btn-container">
+                            <div id="cms-next-page" class="cms-btn">
+                                <img src="images/cms-icons/icn_next_page.png" />
+                                <span>דף הבא</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="cms-document-title" class="cms-menu-container">
+                        <div id="cms-prev-document-container" class="cms-menu cms-btn-container">
+                            <div id="cms-prev-document" class="cms-btn">
+                                <img src="images/cms-icons/icn_prev_doc.png" />
+                                <span>הקודם</span>
+                            </div>
+                        </div>
+                        <div id="cms-title-container" class="cms-menu">
+                            <div id="cms-title"></div>
+                        </div>
+                        <div id="cms-next-document-container" class="cms-menu cms-btn-container">
+                            <div id="cms-next-document" class="cms-btn">
+                                <img src="images/cms-icons/icn_next_doc.png" />
+                                <span>הבא</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="cms-configuration-buttons" class="cms-menu-container">
+                        <div id="cms-rotate90-container" class="cms-btn-container">
+                            <div id="cms-rotate90" class="cms-btn">
+                                <img src="images/cms-icons/icn_rotate.png" />
+                                <span>סיבוב</span>
+                            </div>
+                        </div>
+                        <div id="cms-plus-container" class="cms-btn-container">
+                            <div id="cms-plus" class="cms-btn">
+                                <img src="images/cms-icons/icn_zoom_in.png" />
+                                <span>הגדלה</span>
+                            </div>
+                        </div>
+                        <div id="cms-minus-container" class="cms-btn-container">
+                            <div id="cms-minus" class="cms-btn">
+                                <img src="images/cms-icons/icn_zoom_out.png" />
+                                <span>הקטנה</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="cms-left-bar" class="cms-bar">
+                    <div id="cms-brush-buttons">
+                        <div id="cms-copy-button-container" class="cms-btn-container">
+                            <div id="cms-copy-button" class="cms-btn">
+                                <img src="images/cms-icons/icn_cut.png" />
+                                <span>גזירה</span>
+                            </div>
+                        </div>
+                        <div id="cms-mark-button-container" class="cms-btn-container">
+                            <div id="cms-mark-button" class="cms-btn">
+                                <img src="images/cms-icons/icn_mark.png" />
+                                <span>סימון</span>
+                            </div>
+                        </div>
+                        <div id="cms-compare-button-container" class="cms-btn-container">
+                            <div id="cms-compare-button" class="cms-btn">
+                                <img src="images/cms-icons/icn_mark.png" />
+                                <span>השוואה</span>
+                            </div>
+                        </div>
+                        <div id="cms-split-file-button-container" class="cms-btn-container">
+                            <div id="cms-split-file-button" class="cms-btn">
+                                <img src="images/cms-icons/icn_mark.png" />
+                                <span>פיצול מסמך</span>
+                            </div>
+                        </div>
+                        <div id="cms-split-send-button-container" class="cms-btn-container cmsHiddenScreen">
+                            <div id="cms-split-send-button" class="cms-btn">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 21 21" enable-background="new 0 0 21 21" xml:space="preserve">
+                                <g>
+                                <path d="M2.3315,9.7314c-1.1573,-0.6611,-1.1244,-1.2434,0.0613,-1.7548l16.0046,-6.2984c1.1358,-0.455,1.2804,-0.2982,0.8103,0.7994L13.048,18.4854c-0.5095,1.2888,-0.99,1.3129,-1.7688,0.0709l-2.5444,-4.3371l-0.0075,0.0075l-0.7525,-1.2955l-1.2704,-0.711l0.0018,-0.0018L2.3315,9.7314z" fill="none" stroke="#ffffff" filter="contrast(0.5)" stroke-width="1" stroke-linecap="round" stroke-miterlimit="1" stroke-linejoin="round" />
+
+                                <line x1="7.9" y1="12.9" x2="19.1" y2="1.8" fill="none" stroke="#ffffff" filter="contrast(0.5)" stroke-width="1" stroke-linecap="round" stroke-miterlimit="1" stroke-linejoin="round" />
+
+                                  </g>
+                                </svg>
+                                <span>שליחה</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="cms-right-bar" class="cms-bar">
+                    <div id="cms-document-button">
+                        <div id="cms-doc-btn-container" class="cms-btn-container">
+                            <div id="cms-doc-btn" class="cms-btn">
+                                <img src="images/cms-icons/icn_documents.png" />
+                                <span>מסמכים</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="cms-left-cover" class="cms-bar"></div>
+                <div id="cms-right-cover" class="cms-bar"></div>
+                <div id="cms-work-area">
+                    <div id="cms-side-canvas-area" class="cmsHiddenScreen">
+                        <div id="cms-x">X</div>
+                        <div id="cms-side-canvas-container" class="cmsDiv">
+                            <div id="cms-side-canvas" class="cms-container">
+
+                            </div>
+                            <div class="scroll-cms-container">
+                                <div class="scroll-cms"></div>
+                            </div>
+                            <div class="scroll-horiz-cms-container">
+                                <div class="scroll-horiz-cms"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="cms-split-canvas-area" class="cmsDiv cmsHidden"></div>
+                    <div id="cms-compare-area" class="cmsDiv cmsHidden"></div>
+                    <div id="cms-pdf-area">
+                        <div id="cms-brush"></div>
+                    </div>
+                    <div id="cms-documents-area">
+                        <!--<div id="waContainer" class="wa-container">
+                            <div id="wa1_screenTitle" class="screen-title"></div>
+                            <div id="wa1" class="work-area" frameborder=0 onload="alert('load');" onloadeddata="alert('data');">
+                                <div class="loading-cover"></div>
+                                <div id="wa1_inner" class="work-area-inner"></div>
+                            </div>
+                        </div>-->
+                        <div id="allWas" class="all-was">
+                            <div id="waContainer" class="wa-container">
+                                <!--<div id="loading-cover"></div>-->
+                                <div id="wa1_screenTitle" class="screen-title"></div>
+                                <div id="wa1" class="work-area" frameborder=0 onload="alert('load');" onloadeddata="alert('data');">
+                                    <div class="loading-cover"></div>
+                                    <div id="wa1_inner" class="work-area-inner"></div>
+                                </div>
+                            </div>
+                            <div id="bottomContainer" class="bottom-container no-display">
+
+                                <div class="btn-area">
+                                    <div id="nav-button-back" class="navigation-btn_DIS" onclick="window.mosaics.navigationPane.goBack(event)">
+                                        <svg id="nav-button-back-img" class="nav-button-svg" xml:space="preserve">
+                                        <g>
+                                        <polyline points="7.5,17.5 14.5,10.5 7.5,3.5" />
+
+
+
+
+
+
+
+                                    </g>
+                                </svg>
+                                        <div class="nav-button-label">הקודם</div>
+                                    </div>
+                                    <div id="nav-button-next" class="navigation-btn_DIS" onclick="window.mosaics.navigationPane.goNext(event)">
+                                        <svg id="nav-button-next-img" class="nav-button-svg" xml:space="preserve">
+                                        <g>
+                                        <polyline points="13.5,17.5 6.5,10.5 13.5,3.5" />
+
+
+
+
+
+
+
+                                    </g>
+                                </svg>
+                                        <div class="nav-button-label">הבא</div>
+                                    </div>
+                                    <div id="nav-button-done" class="navigation-btn_DIS" onclick="window.mosaics.navigationPane.goDone(event)">
+                                        <svg id="nav-button-done-img" class="nav-button-svg" xml:space="preserve">
+                                        <g>
+                                        <polyline points="17.1,6.5088 8.4762,15.3 4.0484,10.8722" />
+
+
+
+
+
+
+
+                                    </g>
+                                </svg>
+                                        <div class="nav-button-label">אישור</div>
+                                    </div>
+                                    <div id="nav-button-cancel" class="navigation-btn" onclick="window.mosaics.navigationPane.goCancel(event)">
+                                        <svg id="nav-button-cancel-img" class="nav-button-svg" xml:space="preserve">
+                                        <g>
+                                        <path d="M5.5107,5.5107l9.9787,9.9787M5.5107,15.4893l9.9787,-9.9787" />
+
+
+
+
+
+
+
+                                    </g>
+                                </svg>
+                                        <div class="nav-button-label">ביטול</div>
+                                    </div>
+                                </div>
+                                <div class="nav-separator"></div>
+                                <div id="scrollWaContainerHorizontal" class="scroll-wa-container-horizontal no-display cms-scroll">
+                                    <div id="scrollWaHorizontal" class="scroll-wa-horizontal">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="toolsContainer" class="tools-container">
+                                <div id="toggleContainer" class="toggle-container">
+                                    <label id="toolsToggle" class="tools-toggle">
+                                        <input type="checkbox" id="toolsToggleChck" />
+                                        <span class="dot"></span>
+                                        <span class="dot"></span>
+                                        <span class="dot"></span>
+                                    </label>
+                                </div>
+                                <div class="tools-menu">
+                                    <div id="toolsActivities" class="tools-option">
+                                        <div class="tooltip"><div class="tooltip-text">מעקב פעילויות</div></div>
+                                        <div class="tools-img"></div>
+                                    </div>
+                                    <div id="toolsCmsViewer" class="tools-option" onclick="window.mosaics.currentThread.currentScreen.cmsView();">
+                                        <div class="tooltip"><div class="tooltip-text">מסמכים</div></div>
+                                        <div class="tools-img"></div>
+                                    </div>
+                                    <div id="toolsPrint" class="tools-option">
+                                        <div class="tooltip"><div class="tooltip-text">הדפסה</div></div>
+                                        <div class="tools-img"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="scrollWaContainer" class="scroll-wa-container">
+                            <div id="scrollWa" class="scroll-wa">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--</div>-->
+        </div>
+
+        <div id="ddTemplate" onblur="Picklist.prototype.getCurrentPickList().hide();" class="ddDiv" style="display: none;">
+            <div class="dd-container">
+                <table class="ddFrame"></table>
+            </div>
+            <div class="scroll-container-item scroll-dd-container" tabindex="0">
+                <div class="scroll-item scroll-dd"></div>
+            </div>
+        </div>
+        <table style="display: none;">
+            <tr id="ddLineTemplate">
+                <td class="ddItem" onmouseover="window.mosaics.currentScreen.currentPickList.overOn(event)" onmouseout="window.mosaics.currentScreen.currentPickList.overOut(event)" onclick="window.mosaics.currentScreen.currentPickList.selectOption(event)"></td>
+                <td style="display: none;"></td>
+            </tr>
+        </table>
+        <div id="grids_dp0" class="dp0" style="display: none;">
+            <iframe id="grids_dp" src="/mosaics/mxp/dpBIDI.html" class="dp"></iframe>
+        </div>
+
+    </div>
+    <div id="messagePane" class="message-pane no-display">
+        <div id="messageImg" class="message-img"></div>
+        <div nowrap id="messageLine" class="message-text"></div>
+    </div>
+
+    <script type="text/javascript" src="MosCmsViewer.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+
+</body>
+</html>

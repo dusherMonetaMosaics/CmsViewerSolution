@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="21px" height="21px" viewBox="0 0 21 21" enable-background="new 0 0 21 21" xml:space="preserve">
+  <g id="icon">
+    <line x1="4.5" y1="1.5" x2="4.5" y2="3.5" fill="none" stroke="#3C3C3C" stroke-width="1" stroke-linecap="round" stroke-miterlimit="1" stroke-linejoin="round"/>
+    <line x1="6.5" y1="1.5" x2="6.5" y2="3.5" fill="none" stroke="#3C3C3C" stroke-width="1" stroke-linecap="round" stroke-miterlimit="1" stroke-linejoin="round"/>
+    <line x1="8.5" y1="1.5" x2="8.5" y2="3.5" fill="none" stroke="#3C3C3C" stroke-width="1" stroke-linecap="round" stroke-miterlimit="1" stroke-linejoin="round"/>
+    <line x1="10.5" y1="1.5" x2="10.5" y2="3.5" fill="none" stroke="#3C3C3C" stroke-width="1" stroke-linecap="round" stroke-miterlimit="1" stroke-linejoin="round"/>
+    <line x1="12.5" y1="1.5" x2="12.5" y2="3.5" fill="none" stroke="#3C3C3C" stroke-width="1" stroke-linecap="round" stroke-miterlimit="1" stroke-linejoin="round"/>
+    <line x1="14.5" y1="1.5" x2="14.5" y2="3.5" fill="none" stroke="#3C3C3C" stroke-width="1" stroke-linecap="round" stroke-miterlimit="1" stroke-linejoin="round"/>
+    <path d="M17.5,4v-0.7c0,-0.4418,-0.3582,-0.8,-0.8,-0.8h-0.7" fill="none" stroke="#3C3C3C" stroke-width="1" stroke-linecap="round" stroke-miterlimit="1" stroke-linejoin="round"/>
+    <path d="M3.1,2.5h-0.8c-0.4418,0,-0.8,0.3582,-0.8,0.8v15.4c0,0.4418,0.3582,0.8,0.8,0.8h14.4c0.4418,0,0.8,-0.3582,0.8,-0.8v-6.7" fill="none" stroke="#3C3C3C" stroke-width="1" stroke-linecap="round" stroke-miterlimit="1" stroke-linejoin="round"/>
+    <path d="M9.9048,13.3274l7.2661,-7.277c0.4037,-0.4037,0.994,-0.4681,1.3184,-0.1437l0.7979,0.7979c0.3244,0.3244,0.2537,0.9083,-0.1501,1.312l-7.2715,7.2715c-0.2682,0.2682,-2.8239,1.394,-3.0393,1.1785l-0.0991,-0.0991C8.5118,16.1522,9.6367,13.5955,9.9048,13.3274z" fill="none" stroke="#3C3C3C" stroke-width="1" stroke-miterlimit="1" stroke-linejoin="round"/>
+    <line x1="16.108" y1="7.1048" x2="18.0828" y2="9.0796" fill="none" stroke="#3C3C3C" stroke-width="1" stroke-miterlimit="1" stroke-linejoin="round"/>
+  </g>
+</svg>
